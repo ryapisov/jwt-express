@@ -1,10 +1,13 @@
 require('dotenv').config()
 const express = require("express")
-const bodyParser = require("body-parser")
+
 const mongoose = require("mongoose")
 
 // models
 require("./app/models/product")
+
+// config
+require("./app/config/express")(app)
 
 const app = express()
 
@@ -13,6 +16,5 @@ mongoose.connect(process.env.DATABASE, {
   useUnifiedTopology: true
 })
 
-app.use(bodyParser.json())
 app.get('/', (req, res)=>res.send("Привет мир"))
 app.listen(3000, ()=>console.log("start 3000"))
