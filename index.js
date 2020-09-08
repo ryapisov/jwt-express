@@ -1,20 +1,17 @@
 require('dotenv').config()
-const express = require("express")
-
 const mongoose = require("mongoose")
+const app = require("express")()
 
-// models
 require("./app/models/product")
 
-// config
-require("./app/config/express")(app)
+const config = require("./config")
+config.express(app)
+config.routes(app)
 
-const app = express()
-
+// database
 mongoose.connect(process.env.DATABASE, {
   useNewUrlParser: true,
   useUnifiedTopology: true
-})
-
-app.get('/', (req, res)=>res.send("Привет мир"))
-app.listen(3000, ()=>console.log("start 3000"))
+}) // app start
+  .then(()=> config.start(app))
+  .catch(()=> console.error(`Error DATABASE connecting`))
