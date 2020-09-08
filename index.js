@@ -2,7 +2,7 @@ require('dotenv').config()
 const mongoose = require("mongoose")
 const app = require("express")()
 
-require("./app/models/product")
+require("./app/models")
 
 const config = require("./config")
 config.express(app)
