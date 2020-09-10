@@ -9,5 +9,6 @@ module.exports =(app)=> {
   app.put('/products/:id', authMiddleware, products.update)
   app.delete('/products/:id', authMiddleware, products.remove)
   // auth
-  app.all('/signin', auth.signIn)
+  app.post('/signin', auth.signIn)
+  app.post('/refresh-tokens', auth.refreshTokens)
 }

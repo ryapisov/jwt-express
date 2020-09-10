@@ -6,6 +6,10 @@ require("./app/models")
 const config = require("./config")
 const app = express()
 
+const JWT = JSON.parse(process.env.JWT)
+
+console.log( JWT )
+
 // database
 mongoose.connect(process.env.DATABASE, {
   useNewUrlParser: true,
